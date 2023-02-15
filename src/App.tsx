@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import {Route} from 'react-router-dom'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+      <>
+            <Route path='/'/>
+            <Route path='/cart'/>
+            <Route path='/login'/>
+            <Route path='/payment_result'/>
+            <Route path='/products' children='/:id'/>
+            <Route path='/purchase'/>
+          <Route path='/dashboard'>
+              <Route path='/inventory'/>
+              <Route path='/products_manage'/>
+              <Route path='/order'/>
+          </Route>
+            <Route path='/'/>
+      </>
   )
+
+
 }
 
 export default App
