@@ -62,7 +62,7 @@ export const Homepage = () => {
     }
     return(
         <div className="homepage">
-            <div className='imgDesBox'>
+            <div className='SlideShowBox'>
                 <Slide>
                     {slideImages.map((slideImage, index)=> (
                         <div key={index}>
@@ -72,7 +72,7 @@ export const Homepage = () => {
                     ))}
                 </Slide>
             </div>
-            <div>
+            <div className='Category'>
                 <h2 style={{fontSize:'2rem'}}>دسته بندی محصولات ما</h2>
                 <div className='category__list'>
                     {
