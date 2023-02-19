@@ -2,6 +2,8 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css'
 import {Header} from "./layouts/Header/Header";
 import {Products} from "./pages/Products/Products";
+import {Homepage} from "./pages/HomePage/HomePage";
+import {Footer} from "./layouts/Footer/Footer";
 
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
           <BrowserRouter>
               <Header />
               <Routes>
-                  <Route path='/' element={<h3>Hello</h3>}/>
+                  <Route path='/' element={<Homepage />}/>
               {/*    <Route path='/cart'/>*/}
               {/*    <Route path='/login'/>*/}
               {/*    <Route path='/payment_result'/>*/}
@@ -24,6 +26,7 @@ function App() {
               {/*    </Route>*/}
               {/*    <Route path='*'/>*/}
               </Routes>
+              <Footer />
           </BrowserRouter>
           </>
   )
