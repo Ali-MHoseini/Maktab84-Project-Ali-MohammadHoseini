@@ -3,6 +3,10 @@ import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import {Link, useNavigate} from 'react-router-dom';
 import {CardCategory} from "../../components/CardCategory/CardCategory";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@mui/material/Button';
+import {Cards} from "../../components/Cards/Cards";
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 
 const divStyle = {
@@ -90,7 +94,79 @@ export const Homepage = () => {
                     }
                 </div>
             </div>
+            <div className='Products'>
+                <Link to='/products/books'
+                      style={{textDecoration:'none'}}>
+                    <h2 style={{fontSize:'2rem',display:"flex"}}>
+                        کتاب ها
+                        <ArrowBackIcon style={{alignSelf:'center'}}/></h2>
+                </Link>
+                <div className='category__list'>
+                    <Cards
+                        Image='../../src/assets/images/DovBook.jpg'
+                        Title='کتاب راز داوینچی'
+                        Price="200000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/DovBook.jpg'
+                        Title='کتاب راز داوینچی'
+                        Price="200000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/DovBook.jpg'
+                        Title='کتاب راز داوینچی'
+                        Price="200000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/DovBook.jpg'
+                        Title='کتاب راز داوینچی'
+                        Price="200000تومان"
+                        id="#"/>
 
+                    <div className='moreProd__card'>
+                        <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
+                        <Link to='/products/books' >
+                            <ArrowCircleLeftIcon style={{fontSize:'3.5rem',color:'white'}}/>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <div className='Products'>
+                <Link to='/products/electronicstuff'
+                      style={{textDecoration:'none'}}>
+                    <h2 style={{fontSize:'2rem',display:"flex"}}>
+                        لوازم الکترونیکی
+                        <ArrowBackIcon style={{alignSelf:'center'}}/></h2>
+                </Link>
+                <div className='category__list'>
+                    <Cards
+                        Image='../../src/assets/images/Iphone14.jpg'
+                        Title='گوشی آیفون 14'
+                        Price="100000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/Iphone14.jpg'
+                        Title='گوشی آیفون 14'
+                        Price="100000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/Iphone14.jpg'
+                        Title='گوشی آیفون 14'
+                        Price="100000تومان"
+                        id="#"/>
+                    <Cards
+                        Image='../../src/assets/images/Iphone14.jpg'
+                        Title='گوشی آیفون 14'
+                        Price="100000تومان"
+                        id="#"/>
+                    <div className='moreProd__card'>
+                        <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
+                        <Link to='/products/electronicstuff' >
+                            <ArrowCircleLeftIcon style={{fontSize:'3.5rem',color:'white'}}/>
+                        </Link>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
