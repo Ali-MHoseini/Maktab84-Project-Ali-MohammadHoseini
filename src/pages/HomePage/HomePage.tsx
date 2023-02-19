@@ -12,7 +12,16 @@ const divStyle = {
     backgroundSize: 'cover',
     height: '600px'
 }
-const slideImages = [
+
+type category = {
+    [index:string]:string
+}
+
+type slideAddress = {
+    [index:string]:string
+}
+
+const slideImages:slideAddress[] = [
     {
         url: '../../src/assets/images/Stage.jpg',
     },
@@ -23,6 +32,7 @@ const slideImages = [
         url: '../../src/assets/images/Stage3.jpg',
     },
 ];
+
 
 const cardCategoryList:category[] = [
     {
@@ -47,13 +57,7 @@ const cardCategoryList:category[] = [
         img:'../../src/assets/images/Foods.jpg'
     },
 ]
-type category = {
-    name:string,
-    navigate:string,
-    img:string
 
-
-}
 
 export const Homepage = () => {
     const navigate = useNavigate()
