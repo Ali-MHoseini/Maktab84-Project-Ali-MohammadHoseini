@@ -9,17 +9,19 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 export const Header = ()=> {
     return(
         <div className="header">
-            <div className='flex__header'>
+            <Link to='/' className='flex__header'>
                 <img
                     src='../../src/assets/images/logo.png'
                     width='65px'
                     height='70px'
+                    alt='#'
                     style={{alignSelf:"start"}}/>
                 <h1>فروشگاه سبد</h1>
-            </div>
+            </Link>
             <div className='flex__header' style={{alignSelf:'center',gap:'2rem'}}>
-                <NavLink to={'/products'}>محصولات</NavLink>
-                <NavLink to={'/about-us'}>درباره ما</NavLink>
+                <NavLink className='HeaderLinks' to={'/'}>خانه</NavLink>
+                <NavLink className='HeaderLinks' to={'/products'}>محصولات</NavLink>
+                <NavLink className='HeaderLinks' to={'/about-us'}>درباره ما</NavLink>
             </div>
             <TextField
                 id="standard-basic"

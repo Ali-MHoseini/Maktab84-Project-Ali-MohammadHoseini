@@ -18,6 +18,13 @@
     color:black;
 
 }
+.HeaderLinks{
+    padding: 0.5rem;
+}
+.HeaderLinks:hover {
+    color:red;
+    border-bottom: 1px solid red;
+ }
 .flex__header a {
     text-decoration: none;
 }
@@ -31,7 +38,7 @@
     align-self: center;
     display: flex;
     justify-content:center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .homepage {
