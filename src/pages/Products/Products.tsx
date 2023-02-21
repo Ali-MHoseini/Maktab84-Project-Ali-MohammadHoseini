@@ -27,7 +27,7 @@ export const Products = ()=> {
                 <div style={{display:'flex',justifyContent:'center',direction:'ltr'}}>
                     <Pagination
                         count={10}
-                        onClick={(e:React.ChangeEvent) : void => console.log((e.target as HTMLButtonElement).innerText)}
+                        onClick={(e:React.MouseEvent) : void => console.log((e.target as HTMLButtonElement).innerText)}
                         showFirstButton showLastButton />
                 </div>
 
