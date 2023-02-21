@@ -1,7 +1,7 @@
 export const ProductDesPage = () => {
     return(
-        <>
-            <h1>ProductDesPage</h1>
-        </>
+        <div>
+            ProdDEs
+        </div>
     );
 }
