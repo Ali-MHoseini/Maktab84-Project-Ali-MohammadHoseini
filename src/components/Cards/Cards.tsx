@@ -14,7 +14,7 @@ export const Cards = ({Image,Title,Price,id}:Card)=> {
             <img src={Image} width='190px' height='190px' alt='#'/>
             <h4 style={{color:'white'}}>{Title}</h4>
             <div style={{width:'100%',display:'flex',justifyContent: 'space-between'}}>
-                <p>{Price}</p>
+                <p>{Price}تومان</p>
                 <Button variant="contained" color={"success"} size="small">افزودن به سبد خرید</Button>
             </div>
         </div>
