@@ -1,14 +1,14 @@
-import INSTANCE from '../../services/constants/constants'
+import {INSTANCE} from '../../services/constants/constants'
 
-export const getProds = ():void => {
+export const getProds = ()=> {
     return INSTANCE.get('/products')
 }
-export const getSingleProd = (id:string):void => {
+export const getSingleProd = (id:string) => {
     return INSTANCE.get('/products/:id')
 }
-export const getCategories = ():void => {
+export const getCategories = () => {
     return INSTANCE.get('/category')
 }
-export const registerUser = (data:object):void => {
-    return INSTANCE.get('/user',data)
+export const loginUser = (data:object) => {
+    return INSTANCE.post('/auth/login', data)
 }

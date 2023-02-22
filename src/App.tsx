@@ -3,7 +3,9 @@ import './App.css'
 import {Header} from "./layouts/Header/Header";
 import {Products} from "./pages/Products/Products";
 import {Homepage} from "./pages/HomePage/HomePage";
+import {Login} from "./pages/Login/Login"
 import {Footer} from "./layouts/Footer/Footer";
+import{ToastContainer} from 'react-toastify'
 import {ProductDesPage} from "./pages/ProductDesPage/ProdoctDesPage";
 
 
@@ -13,10 +15,11 @@ function App() {
       <>
           <BrowserRouter>
               <Header />
+              <ToastContainer />
               <Routes>
                   <Route path='/' element={<Homepage />}/>
               {/*    <Route path='/cart'/>*/}
-              {/*    <Route path='/login'/>*/}
+                  <Route path='/login' element={<Login />}/>
               {/*    <Route path='/payment_result'/>*/}
                   <Route path='/products' element={<Products/>}>
                       {/*<Route path='/:category' element={<Products/>}>*/}
