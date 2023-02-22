@@ -2,25 +2,27 @@ import React,{useState} from 'react';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"
 import {toast} from "react-toastify";
-import{useNavigate,Link} from "react-router-dom";
-import {loginUser} from "../../middleware/api/api";
+import{useNavigate} from "react-router-dom";
+import {signUpUser} from "../../middleware/api/api";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-type LoginDT = {
+type SighupDT = {
     email: string,
+    name:string,
     password: string
 }
-export const Login = () => {
+export const SignUp = () => {
     const navigator = useNavigate()
-    const [loginData,setLoginData] = useState({
+    const [signupData,setSignupData] = useState<SighupDT>({
         email:"",
+        name:"",
         password:"",
     })
-    const handleLogin = async  (data:LoginDT) => {
+    const handleSignUp = async  (data:SighupDT) => {
         try {
-            const token = await loginUser(data)
-            console.log(token.data)
+            const token = await signUpUser(data)
+            console.log(token)
             navigator('/')
             toast("خوش آمدید")
         }catch (err:any) {
@@ -29,16 +31,25 @@ export const Login = () => {
 
     }
     return(
-        <div className='LoginPage'>
-            <form className='loginForm'>
-                <h3>ورود</h3>
+        <div className='signupPage'>
+            <form className='signupForm'>
+                <h3>ثبت نام</h3>
                 <label className='inputField'>
                     ایمیل:
                     <TextField
                         type="email"
                         label="ایمیل"
                         variant="outlined"
-                        onChange={(e:React.ChangeEvent)=>setLoginData({...loginData,email: (e.target as HTMLInputElement).value})}
+                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,email: (e.target as HTMLInputElement).value})}
+                        required/>
+                </label>
+                <label className='inputField'>
+                    نام کاربری:
+                    <TextField
+                        type="text"
+                        label="نام کاربری"
+                        variant="outlined"
+                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,name: (e.target as HTMLInputElement).value})}
                         required/>
                 </label>
                 <label className='inputField'>
@@ -48,14 +59,13 @@ export const Login = () => {
                         id="outlined-basic"
                         label="رمز ورود"
                         variant="outlined"
-                        onChange={(e:React.ChangeEvent)=>setLoginData({...loginData,password: (e.target as HTMLInputElement).value})}
+                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,password: (e.target as HTMLInputElement).value})}
                         required/>
                 </label>
                 <Button
                     variant="contained"
-                    onClick={()=>handleLogin(loginData)}
-                    color='primary'>ورود</Button>
-                <Link to='/signup'>ثبت نام نکرده اید؟</Link>
+                    onClick={()=>handleSignUp(signupData)}
+                    color='primary'>ثبت نام</Button>
             </form>
             <div style={{textAlign:'center'}}>
                 <img src='../../src/assets/images/Logo.png' width='250px' height='250px' alt='#'/>
