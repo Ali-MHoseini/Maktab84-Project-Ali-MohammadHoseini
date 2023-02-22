@@ -12,3 +12,7 @@ export const getCategories = () => {
 export const loginUser = (data:object) => {
     return INSTANCE.post('/auth/login', data)
 }
+export const signUpUser = (data:object) => {
+    return INSTANCE.post('/auth/register', data)
+}
+

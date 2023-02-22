@@ -193,14 +193,34 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap:2.5rem;
+    gap:1.3rem;
     width: 30rem;
     height: 25rem;
     border:1px solid #d9d9d9;
-    padding: 2.5rem;
+    padding: 1.5rem;
     border-radius:1rem;
 }
 .loginBtn {
     position: absolute;
     bottom:0;
+}
+.signupForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:1.3rem;
+    width: 30rem;
+    height: 35rem;
+    border:1px solid #d9d9d9;
+    padding: 1.5rem;
+    border-radius:1rem;
+}
+.signupPage {
+    width: 100%;
+    height:45rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top:1rem;
 }
