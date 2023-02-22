@@ -105,22 +105,22 @@ export const Homepage = () => {
                     <Cards
                         Image='../../src/assets/images/DovBook.jpg'
                         Title='کتاب راز داوینچی'
-                        Price="200000تومان"
+                        Price="200000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/DovBook.jpg'
                         Title='کتاب راز داوینچی'
-                        Price="200000تومان"
+                        Price="200000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/DovBook.jpg'
                         Title='کتاب راز داوینچی'
-                        Price="200000تومان"
+                        Price="200000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/DovBook.jpg'
                         Title='کتاب راز داوینچی'
-                        Price="200000تومان"
+                        Price="200000"
                         id="#"/>
 
                     <div className='moreProd__card'>
@@ -142,22 +142,22 @@ export const Homepage = () => {
                     <Cards
                         Image='../../src/assets/images/Iphone14.jpg'
                         Title='گوشی آیفون 14'
-                        Price="100000تومان"
+                        Price="100000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/Iphone14.jpg'
                         Title='گوشی آیفون 14'
-                        Price="100000تومان"
+                        Price="100000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/Iphone14.jpg'
                         Title='گوشی آیفون 14'
-                        Price="100000تومان"
+                        Price="100000"
                         id="#"/>
                     <Cards
                         Image='../../src/assets/images/Iphone14.jpg'
                         Title='گوشی آیفون 14'
-                        Price="100000تومان"
+                        Price="100000"
                         id="#"/>
                     <div className='moreProd__card'>
                         <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const BASE_URL:string = '#';
+export const BASE_URL:string = 'https://shop-api.iran.liara.run/api/v1';
 
-export const INSTANCE_NAME = axios.create({
+export const INSTANCE = axios.create({
     baseURL: BASE_URL,
-    timeout: 10000
+    timeout: 50000
 })
