@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css'
+import {SignUp} from "./pages/SignUp/SignUp";
 import {Header} from "./layouts/Header/Header";
 import {Products} from "./pages/Products/Products";
 import {Homepage} from "./pages/HomePage/HomePage";
@@ -20,6 +21,7 @@ function App() {
                   <Route path='/' element={<Homepage />}/>
               {/*    <Route path='/cart'/>*/}
                   <Route path='/login' element={<Login />}/>
+                  <Route path='/signup' element={<SignUp />}/>
               {/*    <Route path='/payment_result'/>*/}
                   <Route path='/products' element={<Products/>}>
                       {/*<Route path='/:category' element={<Products/>}>*/}
