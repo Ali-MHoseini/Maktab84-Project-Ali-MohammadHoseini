@@ -224,3 +224,7 @@
     align-items: center;
     padding-top:1rem;
 }
+.btn_header {
+    display: flex;
+    gap:0.25rem;
+}

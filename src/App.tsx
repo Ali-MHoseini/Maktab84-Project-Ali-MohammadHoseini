@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css'
+import {Dashboard} from "./pages/Dashboard/Dashboard"
 import {SignUp} from "./pages/SignUp/SignUp";
 import {Header} from "./layouts/Header/Header";
 import {Products} from "./pages/Products/Products";
@@ -14,7 +15,6 @@ function App() {
 
   return (
       <>
-          <BrowserRouter>
               <Header />
               <ToastContainer />
               <Routes>
@@ -29,15 +29,10 @@ function App() {
                       {/*</Route>*/}
                   </Route>
               {/*    <Route path='/purchase'/>*/}
-              {/*    <Route path='/dashboard'>*/}
-              {/*        <Route path='/inventory'/>*/}
-              {/*        <Route path='/products_manage'/>*/}
-              {/*        <Route path='/order'/>*/}
-              {/*    </Route>*/}
+                  <Route path='/dashboard' element={<Dashboard />} />
               {/*    <Route path='*'/>*/}
               </Routes>
               <Footer />
-          </BrowserRouter>
           </>
   )
 
