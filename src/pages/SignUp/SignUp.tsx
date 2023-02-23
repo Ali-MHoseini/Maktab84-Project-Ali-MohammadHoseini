@@ -3,8 +3,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"
 import {toast} from "react-toastify";
 import{useNavigate} from "react-router-dom";
-import {signUpUser} from "../../middleware/api/api";
+import {loginUser, signUpUser} from "../../middleware/api/api";
 import 'react-toastify/dist/ReactToastify.css';
+import JwtDecode from "jwt-decode";
+import {setUserInfo, setUserLoggedIn, setUserToken} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
+import {useDispatch} from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 type SighupDT = {
@@ -13,6 +17,8 @@ type SighupDT = {
     password: string
 }
 export const SignUp = () => {
+    const [isLoading,setIsLoading] = useState(false)
+    const dispatch = useDispatch()
     const navigator = useNavigate()
     const [signupData,setSignupData] = useState<SighupDT>({
         email:"",
@@ -20,9 +26,14 @@ export const SignUp = () => {
         password:"",
     })
     const handleSignUp = async  (data:SighupDT) => {
+        setIsLoading(true)
         try {
-            const token = await signUpUser(data)
-            console.log(token)
+            const response = await signUpUser(data)
+            const decodedUserInfo:any = await JwtDecode(response.data.token);
+            dispatch(setUserToken(response.data.token))
+            dispatch(setUserInfo(decodedUserInfo))
+            dispatch(setUserLoggedIn(true))
+            setIsLoading(false)
             navigator('/')
             toast("خوش آمدید")
         }catch (err:any) {
@@ -64,8 +75,9 @@ export const SignUp = () => {
                 </label>
                 <Button
                     variant="contained"
+                    disabled={isLoading}
                     onClick={()=>handleSignUp(signupData)}
-                    color='primary'>ثبت نام</Button>
+                    color='primary'>{!isLoading?"ثبت نام":<CircularProgress color="inherit" />}</Button>
             </form>
             <div style={{textAlign:'center'}}>
                 <img src='../../src/assets/images/Logo.png' width='250px' height='250px' alt='#'/>

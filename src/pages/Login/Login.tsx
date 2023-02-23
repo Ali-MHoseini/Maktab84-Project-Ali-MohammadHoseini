@@ -5,26 +5,53 @@ import {toast} from "react-toastify";
 import{useNavigate,Link} from "react-router-dom";
 import {loginUser} from "../../middleware/api/api";
 import 'react-toastify/dist/ReactToastify.css';
+import {useDispatch,useSelector} from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress"
+import JwtDecode from "jwt-decode";
+import {setUserInfo,setUserToken,setUserLoggedIn} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
 
 
 type LoginDT = {
     email: string,
     password: string
 }
+
+const toastData:any = {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    style: {textTransform: 'capitalize'}
+}
+
 export const Login = () => {
+    const [isLoading,setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+
     const navigator = useNavigate()
     const [loginData,setLoginData] = useState({
         email:"",
         password:"",
     })
     const handleLogin = async  (data:LoginDT) => {
+        setIsLoading(true)
         try {
-            const token = await loginUser(data)
-            console.log(token.data)
-            navigator('/')
-            toast("خوش آمدید")
+            const response = await loginUser(data)
+            const decodedUserInfo:any = await JwtDecode(response.data.token);
+            dispatch(setUserToken(response.data.token))
+            dispatch(setUserInfo(decodedUserInfo))
+            dispatch(setUserLoggedIn(true))
+            setIsLoading(false)
+            if(decodedUserInfo.bAdmin === true) navigator('/dashboard')
+            else navigator('/')
+            toast.success("خوش آمدید",toastData)
         }catch (err:any) {
-            toast(err.message)
+            toast.error(err.response.data.message,toastData)
+            setIsLoading(false)
         }
 
     }
@@ -53,8 +80,9 @@ export const Login = () => {
                 </label>
                 <Button
                     variant="contained"
+                    disabled={isLoading}
                     onClick={()=>handleLogin(loginData)}
-                    color='primary'>ورود</Button>
+                    color='primary'>{!isLoading?"ورود":<CircularProgress color="inherit" />}</Button>
                 <Link to='/signup'>ثبت نام نکرده اید؟</Link>
             </form>
             <div style={{textAlign:'center'}}>

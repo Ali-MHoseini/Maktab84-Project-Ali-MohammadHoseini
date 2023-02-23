@@ -4,9 +4,17 @@ import TextField from '@mui/material/TextField';
 import Badge from '@mui/material/Badge'
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {useDispatch,useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import Button from '@mui/material/Button'
+import {setUserLoggedIn} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
 
 
 export const Header = ()=> {
+    const loggedIn = useSelector((state:any) => state.userInfo.userLogged);
+    const adminUser = useSelector((state:any) => state.userInfo.userInfo.bAdmin)
+    const dispatch = useDispatch();
+    const navigator = useNavigate();
     return(
         <div className="header">
             <Link to='/' className='flex__header'>
@@ -29,9 +37,17 @@ export const Header = ()=> {
                 variant="outlined"
                 style={{alignSelf:'center',textAlign:"left",width:'25rem'}}/>
             <div className='icons'>
-                <Link to={'/login'} >
+                <div>
+                    {
+                        loggedIn===false?<Link to='/login'>
                     <PersonIcon fontSize="large" color='action'/>
-                </Link>
+                </Link>:(adminUser===true?<div className='btn_header'>
+                            <Button variant="contained" color='success' onClick={()=>navigator('/dashboard')}>ورود به پنل</Button>
+                            <Button variant="contained" color='error' onClick={()=>dispatch(setUserLoggedIn(false))}>خروج</Button>
+                        </div>:<Button variant="contained" color='error' onClick={()=>dispatch(setUserLoggedIn(false))}>خروج</Button>)
+                    }
+
+                </div>
 
                 <Link to={'/cart'} style={{alignSelf:'flex-start'}}>
                     <Badge badgeContent='0' color="primary">
