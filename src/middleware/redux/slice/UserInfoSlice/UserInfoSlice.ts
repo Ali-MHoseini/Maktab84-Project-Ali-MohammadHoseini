@@ -4,9 +4,14 @@ const UserInfoSlice = createSlice({
     name:'UserInfo',
     initialState :{
         userInfo : [],
-        userToken : ''
+        userToken : '',
+        userLogged: false
+
     },
     reducers: {
+        setUserLoggedIn : (state,{payload}) => {
+            state.userLogged = payload
+        },
         setUserToken : (state,{payload}) => {
             state.userToken = payload
         },
@@ -16,5 +21,5 @@ const UserInfoSlice = createSlice({
     }
 })
 
-export const {setUserToken,setUserInfo} = UserInfoSlice.actions
+export const {setUserToken,setUserInfo,setUserLoggedIn} = UserInfoSlice.actions
 export default UserInfoSlice.reducer
