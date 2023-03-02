@@ -13,6 +13,8 @@ import {QuantityAndPrices} from "../../components/QuantityAndPrices/QuantityAndP
 import {AdminOrders} from "../../components/AdminOrders/AdminOrders";
 
 export const Dashboard = () => {
+    const adminUser = useSelector((state:any) => state.userInfo.userInfo.bAdmin)
+    console.log(adminUser)
     const navigator = useNavigate()
     const [value, setValue] = useState('1');
 
@@ -20,30 +22,35 @@ export const Dashboard = () => {
         setValue(newValue);
     };
     return(
-        <div className='dashboard'>
-            <div className='AdminHeader'>
-                <h1> پنل مدیریت فروشگاه</h1>
-                <Button variant='contained' color='error' onClick={()=> navigator('/')}>بازگشت به صفحه اصلی</Button>
-            </div>
 
-            <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab sx={{fontSize:"1.5rem"}} label="کالاها" value="1" />
-                        <Tab sx={{fontSize:"1.5rem"}} label="موجودی و قیمت ها" value="2" />
-                        <Tab sx={{fontSize:"1.5rem"}} label="سفارش ها" value="3" />
-                    </TabList>
-                </Box>
-                <TabPanel value="1">
-                    <AdminProds />
-                </TabPanel>
-                <TabPanel value="2">
-                    <QuantityAndPrices />
-                </TabPanel>
-                <TabPanel value="3">
-                    <AdminOrders />
-                </TabPanel>
-            </TabContext>
+        <div className='dashboard'>
+            <div>
+                        <div className='AdminHeader'>
+                            <h1> پنل مدیریت فروشگاه</h1>
+                            <Button variant='contained' color='error' onClick={()=> navigator('/')}>بازگشت به صفحه اصلی</Button>
+                        </div>
+
+                        <TabContext value={value}>
+                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                <TabList onChange={handleChange} aria-label="lab API tabs example">
+                                    <Tab sx={{fontSize:"1.5rem"}} label="کالاها" value="1" />
+                                    <Tab sx={{fontSize:"1.5rem"}} label="موجودی و قیمت ها" value="2" />
+                                    <Tab sx={{fontSize:"1.5rem"}} label="سفارش ها" value="3" />
+                                </TabList>
+                            </Box>
+                            <TabPanel value="1">
+                                <AdminProds />
+                            </TabPanel>
+                            <TabPanel value="2">
+                                <QuantityAndPrices />
+                            </TabPanel>
+                            <TabPanel value="3">
+                                <AdminOrders />
+                            </TabPanel>
+                        </TabContext>
+                    </div>
+
+
         </div>
     );
 }

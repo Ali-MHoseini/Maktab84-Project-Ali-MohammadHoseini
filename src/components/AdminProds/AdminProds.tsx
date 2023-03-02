@@ -1,16 +1,24 @@
+import React,{useState} from 'react';
 import '../../assets/styles/index.css'
 import Button from "@mui/material/Button";
-
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
-import React from "react";
+import {AddProductModal} from "../AddPrudoctModal/AddProductModal";
 export const AdminProds = ()=> {
+    const [ShowModal,setShowModal] = useState(false)
+    const closeModal = ():void => {
+        setShowModal(false)
+    }
+    const addModal = ():void => {
+        setShowModal(true)
+    }
     return(
         <div className='admin__prods'>
+            <AddProductModal ShowModal={ShowModal} CloseModal={closeModal}/>
             <div className='admin__prodsHeader'>
                 <h3>مدیریت کالاها</h3>
                 <TextField sx={{width:'28rem'}} label="جستجو کنید..." variant="standard"/>
-                <Button variant='contained' color='inherit'>افزودن کالا</Button>
+                <Button variant='contained' color='inherit' onClick={addModal}>افزودن کالا</Button>
             </div>
             <table className='adminTable'>
                 <thead>
@@ -22,7 +30,7 @@ export const AdminProds = ()=> {
                 <tbody>
                 <tr>
                     <td>#</td>
-                    <td>ایفون 14</td>
+                    <td>ایفون 15</td>
                     <td>لوازم الکترونیکی</td>
                     <td style={{display: 'flex',gap:'0.5rem',justifyContent:'center'}}>
                         <a href="#">ویرایش</a>
