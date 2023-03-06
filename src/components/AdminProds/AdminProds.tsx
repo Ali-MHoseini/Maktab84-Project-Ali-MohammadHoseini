@@ -37,42 +37,6 @@ export const AdminProds = ()=> {
                         <a href="#">حذف</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>#</td>
-                    <td>ایفون 14</td>
-                    <td>لوازم الکترونیکی</td>
-                    <td style={{display: 'flex',gap:'0.5rem',justifyContent:'center'}}>
-                        <a href="#">ویرایش</a>
-                        <a href="#">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#</td>
-                    <td>ایفون 14</td>
-                    <td>لوازم الکترونیکی</td>
-                    <td style={{display: 'flex',gap:'0.5rem',justifyContent:'center'}}>
-                        <a href="#">ویرایش</a>
-                        <a href="#">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#</td>
-                    <td>ایفون 14</td>
-                    <td>لوازم الکترونیکی</td>
-                    <td style={{display: 'flex',gap:'0.5rem',justifyContent:'center'}}>
-                        <a href="#">ویرایش</a>
-                        <a href="#">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#</td>
-                    <td>ایفون 14</td>
-                    <td>لوازم الکترونیکی</td>
-                    <td style={{display: 'flex',gap:'0.5rem',justifyContent:'center'}}>
-                        <a href="#">ویرایش</a>
-                        <a href="#">حذف</a>
-                    </td>
-                </tr>
 
                 </tbody>
             </table>

@@ -3,6 +3,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import Button from "@mui/material/Button";
+import {loginUser, postProds} from "../../middleware/api/api";
+import {setUserInfo, setUserLoggedIn, setUserToken} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
+import {toast} from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
+import {useSelector} from "react-redux";
 interface Modal {
     CloseModal:() => void;
     ShowModal:boolean
@@ -11,25 +16,68 @@ interface prodData {
     name:string,
     price:number,
     quantity:number,
-    image:string,
     subCategory:string,
     description:string,
 }
+const toastData:any = {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    style: {textTransform: 'capitalize'}
+}
+
 
 const best = [{ label: 'The Godfather', id: 1 },
     { label: 'Pulp Fiction', id: 2 },]
 
 export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
 
+    const adminUser = useSelector((state:any) => state.userInfo.userToken)
+    const formData = new FormData()
     const [prodData,setProdData] = useState<prodData>({
         name:"",
         price:0,
         quantity:0,
-        image:"",
         subCategory:"",
         description:"",
     })
+    const [isLoading,setIsLoading] = useState(false)
+    const postData = async () => {
+        setIsLoading(true)
+        try {
+                formData.append('name',prodData.name)
+                formData.append('price',String(prodData.price))
+                formData.append('quantity',String(prodData.quantity))
+                formData.append('subCategory',prodData.subCategory)
+                formData.append('description',prodData.description)
+                for (const pair of formData.entries()) {
+                console.log(`${pair[0]}, ${pair[1]}`);
+                }
+                await postProds(formData,adminUser)
+                setIsLoading(false)
 
+        }catch (err:any) {
+            toast.error(err.response.data.message,toastData)
+            setIsLoading(false)
+        }
+
+    }
+
+    const createImage = (e:ChangeEvent) => {
+        const files = (e.target as HTMLInputElement).files;
+        if (files && files[0]) {
+            const image = files[0];
+            formData.append('image', image)
+        }
+        for (const pair of formData.entries()) {
+            console.log(`${pair[0]}, ${pair[1]}`);
+        }
+    }
     return(
         <>
             <div className='BackDrop' style={{display:ShowModal?'block':'none'}} onClick={CloseModal}></div>
@@ -39,16 +87,10 @@ export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
                 <h1 style={{alignSelf:'center'}}>افزودن کالا</h1>
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         تصویر کالا:
-                        <TextField
-                            variant='standard'
-                            value={prodData.image}
-                            style={{marginRight:'1rem',width:'15rem'}}
-                            onChange={(e:ChangeEvent)=>setProdData({...prodData,image:(e.target as HTMLInputElement).value})}/>
                         <input
                             type='file'
-                            multiple="multiple"
-                            style={{direction:'ltr',width:'5.5rem',marginRight:'1rem'}}
-                            onChange={(e:ChangeEvent)=>console.log((e.target as HTMLInputElement).files)}/>
+                            style={{direction:'ltr',width:'15rem',marginRight:'1rem'}}
+                            onChange={(e:ChangeEvent)=>createImage(e)}/>
                     </div>
                     <div className='inpModalAdd'>
                         <p>نام کالا:</p>
@@ -104,8 +146,9 @@ export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
                 <Button
                     style={{alignSelf: 'center',width:'10rem'}}
                     color='success'
+                    disabled={isLoading}
                     variant='contained'
-                    onClick={()=>console.log(prodData)}>ثبت کالا</Button>
+                    onClick={postData}>{!isLoading?"ثبت کالا":<CircularProgress color="inherit" />}</Button>
             </div>
         </>
     );
