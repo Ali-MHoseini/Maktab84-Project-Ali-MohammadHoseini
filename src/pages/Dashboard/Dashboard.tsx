@@ -14,7 +14,6 @@ import {AdminOrders} from "../../components/AdminOrders/AdminOrders";
 
 export const Dashboard = () => {
     const adminUser = useSelector((state:any) => state.userInfo.userInfo.bAdmin)
-    console.log(adminUser)
     const navigator = useNavigate()
     const [value, setValue] = useState('1');
 

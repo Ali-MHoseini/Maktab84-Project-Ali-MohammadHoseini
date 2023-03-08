@@ -1,16 +1,16 @@
-import React, {ChangeEvent, MouseEventHandler, useState} from 'react';
+import React, {ChangeEvent, useState,} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import Button from "@mui/material/Button";
-import {loginUser, postProds} from "../../middleware/api/api";
-import {setUserInfo, setUserLoggedIn, setUserToken} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
+import {postProds} from "../../middleware/api/api";
 import {toast} from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 import {useSelector} from "react-redux";
 interface Modal {
     CloseModal:() => void;
-    ShowModal:boolean
+    ShowModal:boolean,
+    categoryList:any
 }
 interface prodData {
     name:string,
@@ -32,10 +32,12 @@ const toastData:any = {
 }
 
 
-const best = [{ label: 'The Godfather', id: 1 },
-    { label: 'Pulp Fiction', id: 2 },]
+export const AddProductModal = ({ShowModal,CloseModal,categoryList}:Modal) => {
 
-export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
+    const [isCatLoading,setIsCatLoading] = useState<boolean>(false)
+    const [category,setCategory] = useState<string>('')
+
+
 
     const adminUser = useSelector((state:any) => state.userInfo.userToken)
     const formData = new FormData()
@@ -48,22 +50,24 @@ export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
     })
     const [isLoading,setIsLoading] = useState(false)
     const postData = async () => {
-        setIsLoading(true)
+        setIsCatLoading(true)
         try {
-                formData.append('name',prodData.name)
-                formData.append('price',String(prodData.price))
-                formData.append('quantity',String(prodData.quantity))
-                formData.append('subCategory',prodData.subCategory)
-                formData.append('description',prodData.description)
-                for (const pair of formData.entries()) {
-                console.log(`${pair[0]}, ${pair[1]}`);
-                }
+
+                formData.set('name',prodData.name)
+                formData.set('price',String(prodData.price))
+                formData.set('quantity',String(prodData.quantity))
+                formData.set('subCategory',category)
+                formData.set('description',prodData.description)
+                // for (const pair of formData.entries()) {
+                // console.log(`${pair[0]}, ${pair[1]}`);
+                // }
                 await postProds(formData,adminUser)
-                setIsLoading(false)
+                toast('عملیات با موفقیت انجام شد',toastData)
+                setIsCatLoading(false)
 
         }catch (err:any) {
             toast.error(err.response.data.message,toastData)
-            setIsLoading(false)
+            setIsCatLoading(false)
         }
 
     }
@@ -72,17 +76,20 @@ export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
         const files = (e.target as HTMLInputElement).files;
         if (files && files[0]) {
             const image = files[0];
-            formData.append('image', image)
+            console.log(image)
+            formData.set('image', image)
         }
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}, ${pair[1]}`);
-        }
+    }
+    const setProdCat = (value:string):void => {
+        const selCat = categoryList.filter(item => item.label === value)
+        setCategory(selCat[0].id)
+
     }
     return(
         <>
             <div className='BackDrop' style={{display:ShowModal?'block':'none'}} onClick={CloseModal}></div>
-            <div className='ModalBox' style={{transform:ShowModal === true?'translateX(0)':'translateX(-100vw)',
-                opacity:ShowModal === true?'1':'0'}} >
+            <div className='ModalBox' style={{transform:ShowModal?'translateX(0)':'translateX(-100vw)',
+                opacity:ShowModal?'1':'0'}} >
                 <CloseIcon color='error' onClick={CloseModal} className='CloseIcon'/>
                 <h1 style={{alignSelf:'center'}}>افزودن کالا</h1>
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
@@ -103,14 +110,14 @@ export const AddProductModal = ({ShowModal,CloseModal}:Modal) => {
                         <Autocomplete
                             disablePortal
                             id="combo-box-demo"
-                            options={best}
+                            options={categoryList}
                             sx={{ width: '100%' }}
-                            onChange={(e:ChangeEvent)=>setProdData({...prodData,subCategory:(e.target as HTMLInputElement).innerText})}
+                            onChange={(e:ChangeEvent):void=>setProdCat((e.target as HTMLInputElement).innerText)}
                             renderInput={(params) =>
                                 <TextField {...params}
-                                     label="دسته بندی ها"
+                                     label={!isCatLoading?"دسته بندی ها":"در حال بارگذاری"}
                                      variant='standard'
-                                     onChange={(e:ChangeEvent)=>setProdData({...prodData,subCategory:(e.target as HTMLInputElement).innerText})}/>}
+                                     />}
                         />
                     </div>
                     <div style={{ width: '100%',display:'flex',justifyContent:'space-around',paddingTop:'1.5rem'}}>

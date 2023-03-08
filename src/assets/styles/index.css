@@ -316,7 +316,8 @@ td{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap:0.5rem;
+    gap:-0.5rem;
+    justify-content: flex-start;
 }
 
 .inpModalAdd input{
