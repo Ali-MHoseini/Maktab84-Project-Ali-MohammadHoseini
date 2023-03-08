@@ -1,13 +1,21 @@
 import {INSTANCE} from '../../services/constants/constants'
 
-export const getProds = ()=> {
-    return INSTANCE.get('/products')
+export const getProds = (p:any ,l:any )=> {
+    return INSTANCE.get(`/product?page=${p}&limit=${l}`)
+}
+export const postProds = (data:any,token:string)=> {
+    return INSTANCE.post('/product',data,{
+        headers: {
+            "Authorization":`Bearer ${token}`,
+            "Content-Type": 'multipart/form-data',
+        }
+    })
 }
 export const getSingleProd = (id:string) => {
-    return INSTANCE.get('/products/:id')
+    return INSTANCE.get(`/product/${id}`)
 }
-export const getCategories = () => {
-    return INSTANCE.get('/category')
+export const getSubCategories = () => {
+    return INSTANCE.get('/subcategory')
 }
 export const loginUser = (data:object) => {
     return INSTANCE.post('/auth/login', data)
