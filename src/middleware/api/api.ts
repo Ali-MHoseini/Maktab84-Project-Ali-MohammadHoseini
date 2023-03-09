@@ -11,6 +11,15 @@ export const postProds = (data:any,token:string)=> {
         }
     })
 }
+export const patchProd = (data:any,id:string,token:string)=> {
+    return INSTANCE.patch(`/product/${id}`,data,{
+        headers: {
+            "Authorization":`Bearer ${token}`,
+            "Content-Type": 'multipart/form-data',
+        }
+    })
+}
+
 export const getSingleProd = (id:string) => {
     return INSTANCE.get(`/product/${id}`)
 }

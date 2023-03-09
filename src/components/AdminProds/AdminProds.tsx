@@ -61,7 +61,10 @@ export const AdminProds = ()=> {
                         <ProdRow key={crypto.randomUUID()}
                                  name={value.name}
                                  subCat={value.subCategory.name}
-                                 id={value._id} />
+                                 id={value._id}
+                                 description={value.description}
+                                 price={value.price}
+                                 quantity={value.quantity} />
                     ))
                 }
 

@@ -2,14 +2,18 @@ import React, {ChangeEvent, useEffect, useState,} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField'
 import Button from "@mui/material/Button";
-import {getSingleProd, postProds} from "../../middleware/api/api";
+import {getSingleProd, patchProd, postProds} from "../../middleware/api/api";
 import {toast} from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 import {useSelector} from "react-redux";
 interface Modal {
     CloseModal:() => void;
     ShowModal:boolean,
-    id:string
+    id:string,
+    description:string,
+    price:number,
+    quantity:number,
+    name:string
 }
 // interface prodData {
 //     name:string,
@@ -30,31 +34,44 @@ const toastData:any = {
 }
 
 
-export const EditProductModal = ({ShowModal,CloseModal,id}:Modal) => {
+export const EditProductModal = ({ShowModal,CloseModal,id,description,price,quantity,name}:Modal) => {
+
 
     let proData:any = [];
+
     const adminUser = useSelector((state:any) => state.userInfo.userToken)
-    const formData = new FormData()
+
     const [prodData,setProdData] = useState({
-        name:proData.name,
-        price:proData.price,
-        quantity:proData.quantity,
-        description:proData.description,
+        name:name,
+        price:price,
+        quantity:quantity,
+        description:description,
     })
-    const [isLoadModal,setIsLoadModal] = useState(false)
     const [isLoading,setIsLoading] = useState<boolean>(false)
     const postEditData = async () => {
         setIsLoading(true)
         try {
+            const formData = new FormData();
+            await getSingleProd(id).then(res=> {
+                proData.push(res.data.product)
+            })
+            const newData = {...proData[0] ,
+                name:prodData.name,
+                price:prodData.price,
+                quantity:prodData.quantity,
+                description:prodData.description
+            }
 
-            formData.set('name',prodData.name)
-            formData.set('price',String(prodData.price))
-            formData.set('quantity',String(prodData.quantity))
-            formData.set('description',prodData.description)
+            formData.set('name',newData.name)
+            formData.set('price',String(newData.price))
+            formData.set('quantity',String(newData.quantity))
+            formData.set('description',newData.description)
+            formData.set('image',proData[0].image)
+            formData.set('subCategory',newData.subCategory._id)
             // for (const pair of formData.entries()) {
             // console.log(`${pair[0]}, ${pair[1]}`);
             // }
-            await postProds(formData,adminUser)
+            await patchProd(formData,id,adminUser)
             toast('عملیات با موفقیت انجام شد',toastData)
             setIsLoading(false)
 
@@ -64,18 +81,12 @@ export const EditProductModal = ({ShowModal,CloseModal,id}:Modal) => {
         }
 
     }
-    // useEffect( () => {
-    //     setIsLoadModal(true)
-    //      getSingleProd(id).then(res=> {
-    //         proData.push(res.data.product)
-    //     }).then(samp=>setIsLoadModal(false))
-    // }, []);
 
     return(
         <>
             <div className='BackDrop' style={{display:ShowModal?'block':'none'}} onClick={CloseModal}></div>
             {
-                !isLoadModal?<div className='ModalBox' style={{transform:ShowModal?'translateX(0)':'translateX(-100vw)',
+                <div className='ModalBox' style={{transform:ShowModal?'translateX(0)':'translateX(-100vw)',
                     opacity:ShowModal?'1':'0'}} >
                     <CloseIcon color='error' onClick={CloseModal} className='CloseIcon'/>
                     <h1 style={{alignSelf:'center'}}>ویرایش کالا</h1>
@@ -123,7 +134,7 @@ export const EditProductModal = ({ShowModal,CloseModal,id}:Modal) => {
                         disabled={isLoading}
                         variant='contained'
                         onClick={postEditData}>{!isLoading?"ویرایش کالا":<CircularProgress color="inherit" />}</Button>
-                </div>:null
+                </div>
             }
 
         </>
