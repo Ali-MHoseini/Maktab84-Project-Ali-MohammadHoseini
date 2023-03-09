@@ -12,6 +12,7 @@ export const AdminProds = ()=> {
     const [data,setData] = useState<any>([])
     const [numOfPages,setNumOfPages] = useState<number>(1)
     let categoryList:object[] = [];
+    const [getData,setGetData] = useState(false)
 
     useEffect(()=>{
         let resData:any;
@@ -20,14 +21,13 @@ export const AdminProds = ()=> {
                 categoryList.push({label:item.name,id:item._id})
             })
         })
-        console.log(categoryList)
     },[ShowModal])
 
     useEffect(() => {
         getProds(1,6).then(res=> {
             setNumOfPages(res.data.nbPages)
             setData(res.data.hits)})
-    }, []);
+    }, [getData]);
 
 
     const closeModal = ():void => {
@@ -64,7 +64,8 @@ export const AdminProds = ()=> {
                                  id={value._id}
                                  description={value.description}
                                  price={value.price}
-                                 quantity={value.quantity} />
+                                 quantity={value.quantity}
+                                 getData={()=>setGetData(!getData)}   />
                     ))
                 }
                 </tbody>
