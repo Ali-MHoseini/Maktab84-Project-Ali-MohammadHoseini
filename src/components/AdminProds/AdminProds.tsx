@@ -67,8 +67,6 @@ export const AdminProds = ()=> {
                                  quantity={value.quantity} />
                     ))
                 }
-
-
                 </tbody>
             </table>
             <div style={{marginTop:'3rem',display:'flex',justifyContent:'center',direction:'ltr'}}>
