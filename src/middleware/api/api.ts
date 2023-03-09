@@ -23,6 +23,13 @@ export const patchProd = (data:any,id:string,token:string)=> {
 export const getSingleProd = (id:string) => {
     return INSTANCE.get(`/product/${id}`)
 }
+export const delSingleProd = (id:string,token:string) => {
+    return INSTANCE.delete(`/product/${id}`,{
+        headers: {
+            "Authorization":`Bearer ${token}`,
+        }
+    })
+}
 export const getSubCategories = () => {
     return INSTANCE.get('/subcategory')
 }
