@@ -24,7 +24,7 @@ export const AdminProds = ()=> {
     },[ShowModal])
 
     useEffect(() => {
-        getProds(1,6).then(res=> {
+        getProds(1,4).then(res=> {
             setNumOfPages(res.data.nbPages)
             setData(res.data.hits)})
     }, [getData]);
@@ -37,7 +37,7 @@ export const AdminProds = ()=> {
         setShowModal(true)
     }
     const changePage = (pageNum:string) => {
-        getProds(pageNum,6).then(res=> setData(res.data.hits))
+        getProds(pageNum,4).then(res=> setData(res.data.hits))
     }
     return(
         <div className='admin__prods'>

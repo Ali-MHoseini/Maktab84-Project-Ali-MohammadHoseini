@@ -1,4 +1,5 @@
 import '../../assets/styles/index.css'
+import React from 'react'
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import {Link, useNavigate} from 'react-router-dom';
@@ -7,6 +8,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@mui/material/Button';
 import {Cards} from "../../components/Cards/Cards";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import {useEffect,useState} from "react";
+import {getProds} from "../../middleware/api/api";
 
 
 const divStyle = {
@@ -64,6 +67,16 @@ const cardCategoryList:category[] = [
 
 
 export const Homepage = () => {
+    const [bookData,setBookData] = useState([])
+    // const [elecData,setElecData] = useState([])
+    let allData;
+    useEffect(() => {
+        getProds(1,-1).then(res=> {
+            allData =(res.data.hits)
+            setBookData(allData.filter((item:any)=>item.subCategory._id == '6406eef6981b5568a19a1e63').slice(0,4))
+        })
+    }, []);
+
     const navigate = useNavigate()
     const navFunc = (address:string):void => {
         navigate(address)
@@ -102,27 +115,16 @@ export const Homepage = () => {
                         <ArrowBackIcon style={{alignSelf:'center'}}/></h2>
                 </Link>
                 <div className='category__list'>
-                    <Cards
-                        Image='../../src/assets/images/DovBook.jpg'
-                        Title='کتاب راز داوینچی'
-                        Price="200000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/DovBook.jpg'
-                        Title='کتاب راز داوینچی'
-                        Price="200000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/DovBook.jpg'
-                        Title='کتاب راز داوینچی'
-                        Price="200000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/DovBook.jpg'
-                        Title='کتاب راز داوینچی'
-                        Price="200000"
-                        id="#"/>
-
+                    {
+                        bookData && bookData.map((item:any) =>(
+                            <Cards
+                                key={crypto.randomUUID()}
+                                Image={item.image}
+                                Title={item.name}
+                                Price={item.price}
+                                id={item._id}/>
+                        ))
+                    }
                     <div className='moreProd__card'>
                         <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
                         <Link to='/products/books' >
@@ -139,26 +141,16 @@ export const Homepage = () => {
                         <ArrowBackIcon style={{alignSelf:'center'}}/></h2>
                 </Link>
                 <div className='category__list'>
-                    <Cards
-                        Image='../../src/assets/images/Iphone14.jpg'
-                        Title='گوشی آیفون 14'
-                        Price="100000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/Iphone14.jpg'
-                        Title='گوشی آیفون 14'
-                        Price="100000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/Iphone14.jpg'
-                        Title='گوشی آیفون 14'
-                        Price="100000"
-                        id="#"/>
-                    <Cards
-                        Image='../../src/assets/images/Iphone14.jpg'
-                        Title='گوشی آیفون 14'
-                        Price="100000"
-                        id="#"/>
+                    {
+                        bookData && bookData.map((item:any) =>(
+                            <Cards
+                                key={crypto.randomUUID()}
+                                Image={item.image}
+                                Title={item.name}
+                                Price={item.price}
+                                id={item._id}/>
+                        ))
+                    }
                     <div className='moreProd__card'>
                         <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
                         <Link to='/products/electronicstuff' >

@@ -11,7 +11,7 @@ interface Card {
 export const Cards = ({Image,Title,Price,id}:Card)=> {
     return(
         <div className='prod__card'>
-            <img src={Image} width='190px' height='190px' alt='#'/>
+            <img src={`https://shop-api.iran.liara.run${Image}`} width='190px' height='190px' alt='#'/>
             <h4 style={{color:'white'}}>{Title}</h4>
             <div style={{width:'100%',display:'flex',justifyContent: 'space-between'}}>
                 <p>{Price}تومان</p>
