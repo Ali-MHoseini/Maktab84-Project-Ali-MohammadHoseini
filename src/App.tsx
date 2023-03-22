@@ -23,11 +23,8 @@ function App() {
                   <Route path='/login' element={<Login />}/>
                   <Route path='/signup' element={<SignUp />}/>
               {/*    <Route path='/payment_result'/>*/}
-                  <Route path='/products' element={<Products/>}>
-                      <Route path='/:category' element={<Products/>}>
-                          <Route path='/:id' element={<ProductDesPage />} />
-                      </Route>
-                  </Route>
+                  <Route path='/products' element={<Products/>} />
+                  <Route path='/products/:id' element={<ProductDesPage />} />
               {/*    <Route path='/purchase'/>*/}
                   <Route path='/dashboard' element={<Dashboard />} />
               {/*    <Route path='*'/>*/}

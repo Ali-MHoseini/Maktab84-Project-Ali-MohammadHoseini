@@ -21,11 +21,17 @@ const divStyle = {
 }
 
 type category = {
-    [index:string]:string
+    name:string,
+    img:string,
+    navigate:object
 }
 
 type slideAddress = {
     [index:string]:string
+}
+type address = {
+    pathname:string,
+    search:string
 }
 
 const slideImages:slideAddress[] = [
@@ -44,23 +50,23 @@ const slideImages:slideAddress[] = [
 const cardCategoryList:category[] = [
     {
         name:'کتاب ها',
-        navigate:'/products/books',
+        navigate:{pathname:`/products`,hash: "#hash",search:'?sort=books'},
         img:'../../src/assets/images/ketab.png',
     },{
         name:'لوازم خانگی',
-        navigate:'/products/housestuff',
+        navigate:{pathname:`/products`,search:'?sort=housestuff'},
         img:'../../src/assets/images/lavazem-khanegi.png'
     },{
         name:'لوازم الکترونیکی',
-        navigate:'/products/electronicstuff',
+        navigate:{pathname:`/products`,search:'?sort=electronicstuff'},
         img:'../../src/assets/images/Tech.png'
     },{
         name:'لوازم مسافرتی',
-        navigate:'/products/travelstuff',
+        navigate:{pathname:`/products`,search:'?sort=travelstuff'},
         img:'../../src/assets/images/travel.png'
     },{
         name:'خوراکی ها',
-        navigate:'/products/foods',
+        navigate:{pathname:`/products`,search:'?sort=foods'},
         img:'../../src/assets/images/Foods.jpg'
     },
 ]
@@ -78,9 +84,10 @@ export const Homepage = () => {
     }, []);
 
     const navigate = useNavigate()
-    const navFunc = (address:string):void => {
+    const Navigate = (address:any):void => {
         navigate(address)
     }
+
     return(
         <div className="homepage">
             <div className='SlideShowBox'>
@@ -102,7 +109,7 @@ export const Homepage = () => {
                                 key={index}
                                 Image={category.img}
                                 Name={category.name}
-                                NavFunc={()=>navFunc(category.navigate)}/>
+                                Navigate={()=>Navigate(category.navigate)}/>
                         ))
                     }
                 </div>

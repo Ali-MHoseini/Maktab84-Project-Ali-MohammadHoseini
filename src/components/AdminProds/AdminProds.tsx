@@ -12,7 +12,7 @@ export const AdminProds = ()=> {
     const [data,setData] = useState<any>([])
     const [numOfPages,setNumOfPages] = useState<number>(1)
     let categoryList:object[] = [];
-    const [getData,setGetData] = useState(false)
+    const [getData,setGetData] = useState<boolean>(false)
 
     useEffect(()=>{
         let resData:any;
