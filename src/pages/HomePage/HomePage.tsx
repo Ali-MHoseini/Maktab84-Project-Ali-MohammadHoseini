@@ -74,7 +74,6 @@ const cardCategoryList:category[] = [
 
 export const Homepage = () => {
     const [bookData,setBookData] = useState([])
-    // const [elecData,setElecData] = useState([])
     let allData;
     useEffect(() => {
         getProds(1,-1).then(res=> {

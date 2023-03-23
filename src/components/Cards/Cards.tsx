@@ -12,7 +12,11 @@ interface Card {
 export const Cards = ({Image,Title,Price,id}:Card)=> {
     return(
         <div className='prod__card'>
-            <img src={`https://shop-api.iran.liara.run${Image}`} width='190px' height='190px' alt='#'/>
+            <img
+                src={`https://shop-api.iran.liara.run${Image}`}
+                width='190px' height='190px'
+                alt='#'
+                crossOrigin='anonymous'/>
             <Link style={{textDecoration:"none"}} to={`/products/p=${id}`}>
                 <h4 style={{color:'white'}}>{Title}</h4>
             </Link>

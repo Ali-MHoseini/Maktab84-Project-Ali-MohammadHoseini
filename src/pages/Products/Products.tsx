@@ -30,7 +30,6 @@ export const Products = ()=> {
                         onClick={(e:React.MouseEvent) : void => console.log((e.target as HTMLButtonElement).innerText)}
                         showFirstButton showLastButton />
                 </div>
-
             </div>
         </div>
     );
