@@ -323,3 +323,48 @@ td{
 .inpModalAdd input{
     width: 100%;
 }
+
+.proDesPage{
+    width:90vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 35rem;
+}
+
+.desProduct{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.plusOrMinBTN{
+    width:1.5rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    cursor: pointer;
+}
+.plusOrMinInp {
+    width:1.5rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    outline: none;
+}
+
+.plusOrMinBTN:hover{
+    background-color: #d9d9d9;
+
+}
+
+.description {
+    margin:5rem;
+}
+
+.description h2{
+    padding:0.25rem;
+    border-bottom:1px solid #d9d9d9;
+}
+.description p{
+    padding:0.25rem;
+    font-weight:lighter;
+}

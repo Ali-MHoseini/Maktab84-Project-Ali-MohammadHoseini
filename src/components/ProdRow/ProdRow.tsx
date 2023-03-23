@@ -43,7 +43,6 @@ export const ProdRow = ({name,subCat,id,description,price,quantity,getData}:Row)
 
     return(
             <tr>
-
                 <td>#</td>
                 <td>{name}</td>
                 <td>{subCat}</td>
@@ -59,9 +58,10 @@ export const ProdRow = ({name,subCat,id,description,price,quantity,getData}:Row)
                     />
                     <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}} onClick={()=>setShowEditModal(true)}>ویرایش</p>
                     <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}}
-                        onClick={()=>deleteItem(id)}>حذف</p>
+                       onClick={()=>setShowEditModal(true)}>ویرایش</p>
+                    <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}}
+                       onClick={()=>deleteItem(id)}>حذف</p>
                 </td>
             </tr>
-
     )
 }
