@@ -33,6 +33,9 @@ export const delSingleProd = (id:string,token:string) => {
 export const getSubCategories = () => {
     return INSTANCE.get('/subcategory')
 }
+export const getCategories = () => {
+    return INSTANCE.get('/category?page=1&limit=-1')
+}
 export const loginUser = (data:object) => {
     return INSTANCE.post('/auth/login', data)
 }

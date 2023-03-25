@@ -2,16 +2,23 @@ import React, {useEffect, useState} from 'react';
 import Button from "@mui/material/Button";
 import Pagination from '@mui/material/Pagination'
 import {Cards} from '../../components/Cards/Cards'
-import {getProds} from "../../middleware/api/api";
+import {Link,NavLink} from 'react-router-dom'
+import {getCategories, getProds} from "../../middleware/api/api";
 
 export const Products = ()=> {
     const [data,setData] = useState<any>([])
+    const [allCategories,setAllCategories] = useState([])
     const [numOfPages,setNumOfPages] = useState<number>(1)
-    const [getData,setGetData] = useState<boolean>(false)
     useEffect(() => {
         getProds(1,6).then(res=> {
             setNumOfPages(res.data.nbPages)
-            setData(res.data.hits)})
+            setData(res.data.hits)
+        })
+    }, []);
+    useEffect(() => {
+        getCategories().then(res=> {
+            setAllCategories(res.data.hits)
+        })
     }, []);
     const changePage = (pageNum:string) => {
         getProds(pageNum,6).then(res=> setData(res.data.hits))
@@ -20,6 +27,27 @@ export const Products = ()=> {
     return(
         <div className='productsPage'>
             <div className='categoryBox'>
+                <ul>
+                    {
+                        allCategories && allCategories.map((item:any)=> (
+                            <li>{item.name}
+                                {item.subCategories?<ul>
+                                    {
+                                        item.subCategories && item.subCategories.map((item:any) => (
+                                            <li>
+                                                <NavLink
+                                                    style={{textDecoration: 'none'}}
+                                                    to={{pathname:`/products`,search:`?sort=${item._id}`}}>
+                                                    {item.name}
+                                                </NavLink>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>:null}
+                            </li>
+                        ))
+                    }
+                </ul>
 
             </div>
             <div className='prodBox'>

@@ -50,23 +50,23 @@ const slideImages:slideAddress[] = [
 const cardCategoryList:category[] = [
     {
         name:'کتاب ها',
-        navigate:{pathname:`/products`,hash: "#hash",search:'?sort=books'},
+        navigate:{pathname:`/products`,search:'?sort=64060a83981b5568a19a1b74'},
         img:'../../src/assets/images/ketab.png',
     },{
         name:'لوازم خانگی',
-        navigate:{pathname:`/products`,search:'?sort=housestuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060a8e981b5568a19a1b77'},
         img:'../../src/assets/images/lavazem-khanegi.png'
     },{
         name:'لوازم الکترونیکی',
-        navigate:{pathname:`/products`,search:'?sort=electronicstuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060aa7981b5568a19a1b7a'},
         img:'../../src/assets/images/Tech.png'
     },{
         name:'لوازم مسافرتی',
-        navigate:{pathname:`/products`,search:'?sort=travelstuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060ab0981b5568a19a1b7d'},
         img:'../../src/assets/images/travel.png'
     },{
         name:'خوراکی ها',
-        navigate:{pathname:`/products`,search:'?sort=foods'},
+        navigate:{pathname:`/products`,search:'?sort=64060ac4981b5568a19a1b80'},
         img:'../../src/assets/images/Foods.jpg'
     },
 ]
