@@ -77,13 +77,13 @@ export const ProductDesPage = () => {
                             <h5>دسته بندی: {data && data.subCategory.name}</h5>
                         </div>
                         <h3>{data && data.price} تومان</h3>
-                        <div style={{display:'flex',justifyContent:'space-between'}}>
+                        <div style={{display:'flex',gap:'2.5rem'}}>
                             <div style={{display:'flex'}}>
                                 <div>
                                     <div className='plusOrMinBTN' onClick={()=>setNumber('+')}>+</div>
                                     <div className='plusOrMinBTN' onClick={()=>setNumber('-')}>-</div>
                                 </div>
-                                <input defaultValue={prodNum} className='plusOrMinInp'/>
+                                <input value={prodNum} className='plusOrMinInp'/>
                             </div>
                             <Button variant='contained' color='success'>افزودن به سبد خرید</Button>
                         </div>
@@ -93,8 +93,8 @@ export const ProductDesPage = () => {
                     <h2>توضیحات</h2>
                     <p>{data && data.description}</p>
                 </div>
-            </>}
-
+            </>
+            }
         </>
 
     );

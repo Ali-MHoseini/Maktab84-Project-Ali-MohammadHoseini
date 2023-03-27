@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Button from "@mui/material/Button";
 import Pagination from '@mui/material/Pagination'
 import {Cards} from '../../components/Cards/Cards'
@@ -19,7 +19,6 @@ export const Products = ()=> {
             setAllCategories(res.data.hits)
         })
     }, []);
-
     useEffect(() => {
         const insertId = window.location.search? window.location.search.split('?')[1]
             .split('=')[1].split('_')[0]:'';
