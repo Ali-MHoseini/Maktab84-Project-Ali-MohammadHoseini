@@ -10,6 +10,8 @@ import {Cards} from "../../components/Cards/Cards";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import {useEffect,useState} from "react";
 import {getProds} from "../../middleware/api/api";
+import {useDispatch} from "react-redux";
+import {setProds} from "../../middleware/redux/slice/ProductSlice/ProductSlice";
 
 
 const divStyle = {
@@ -50,23 +52,23 @@ const slideImages:slideAddress[] = [
 const cardCategoryList:category[] = [
     {
         name:'کتاب ها',
-        navigate:{pathname:`/products`,hash: "#hash",search:'?sort=books'},
+        navigate:{pathname:`/products`,search:'?sort=64060a83981b5568a19a1b74_cat'},
         img:'../../src/assets/images/ketab.png',
     },{
         name:'لوازم خانگی',
-        navigate:{pathname:`/products`,search:'?sort=housestuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060a8e981b5568a19a1b77_cat'},
         img:'../../src/assets/images/lavazem-khanegi.png'
     },{
         name:'لوازم الکترونیکی',
-        navigate:{pathname:`/products`,search:'?sort=electronicstuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060aa7981b5568a19a1b7a_cat'},
         img:'../../src/assets/images/Tech.png'
     },{
         name:'لوازم مسافرتی',
-        navigate:{pathname:`/products`,search:'?sort=travelstuff'},
+        navigate:{pathname:`/products`,search:'?sort=64060ab0981b5568a19a1b7d_cat'},
         img:'../../src/assets/images/travel.png'
     },{
         name:'خوراکی ها',
-        navigate:{pathname:`/products`,search:'?sort=foods'},
+        navigate:{pathname:`/products`,search:'?sort=64060ac4981b5568a19a1b80_cat'},
         img:'../../src/assets/images/Foods.jpg'
     },
 ]
@@ -74,10 +76,12 @@ const cardCategoryList:category[] = [
 
 export const Homepage = () => {
     const [bookData,setBookData] = useState([])
+    const dispatch = useDispatch()
     let allData;
     useEffect(() => {
         getProds(1,-1).then(res=> {
             allData =(res.data.hits)
+            dispatch(setProds(res.data.hits))
             setBookData(allData.filter((item:any)=>item.subCategory._id == '6406eef6981b5568a19a1e63').slice(0,4))
         })
     }, []);
@@ -114,7 +118,7 @@ export const Homepage = () => {
                 </div>
             </div>
             <div className='Products'>
-                <Link to='/products/books'
+                <Link to={{pathname:`/products`,search:'?sort=64060a83981b5568a19a1b74'}}
                       style={{textDecoration:'none'}}>
                     <h2 style={{fontSize:'2rem',display:"flex"}}>
                         کتاب ها
@@ -133,14 +137,14 @@ export const Homepage = () => {
                     }
                     <div className='moreProd__card'>
                         <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
-                        <Link to='/products/books' >
+                        <Link to={{pathname:`/products`,search:'?sort=64060a83981b5568a19a1b74'}} >
                             <ArrowCircleLeftIcon style={{fontSize:'3.5rem',color:'white'}}/>
                         </Link>
                     </div>
                 </div>
             </div>
             <div className='Products'>
-                <Link to='/products/electronicstuff'
+                <Link to={{pathname:`/products`,search:'?sort=64060aa7981b5568a19a1b7a'}}
                       style={{textDecoration:'none'}}>
                     <h2 style={{fontSize:'2rem',display:"flex"}}>
                         لوازم الکترونیکی
@@ -159,7 +163,7 @@ export const Homepage = () => {
                     }
                     <div className='moreProd__card'>
                         <h2 style={{textAlign:'center'}}>مشاهده محصولات بیشتر</h2>
-                        <Link to='/products/electronicstuff' >
+                        <Link to={{pathname:`/products`,search:'?sort=64060aa7981b5568a19a1b7a'}} >
                             <ArrowCircleLeftIcon style={{fontSize:'3.5rem',color:'white'}}/>
                         </Link>
                     </div>
