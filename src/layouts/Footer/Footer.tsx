@@ -7,11 +7,11 @@ export const Footer = ()=> {
                     دسته بندی محصولات
                 </div>
                 <div className='f__details'>
-                    <Link className='links' to='/products/books' >کتاب ها</Link>
-                    <Link className='links' to='/products/housestuff' >لوزام خانگی</Link>
-                    <Link className='links' to='/products/electronicstuff' >لوازم الکترونیکی</Link>
-                    <Link className='links' to='/products/travelstuff' >لوازم مسافرتی</Link>
-                    <Link className='links' to='/products/foods' >خوراکی ها</Link>
+                    <Link className='links' to={{pathname:`/products`,search:'?sort=64060a83981b5568a19a1b74_cat'}} >کتاب ها</Link>
+                    <Link className='links' to={{pathname:`/products`,search:'?sort=64060a8e981b5568a19a1b77_cat'}} >لوازم خانگی</Link>
+                    <Link className='links' to={{pathname:`/products`,search:'?sort=64060aa7981b5568a19a1b7a_cat'}} >لوازم الکترونیکی</Link>
+                    <Link className='links' to={{pathname:`/products`,search:'?sort=64060ab0981b5568a19a1b7d_cat'}} >لوازم مسافرتی</Link>
+                    <Link className='links' to={{pathname:`/products`,search:'?sort=64060ac4981b5568a19a1b80_cat'}} >خوراکی ها</Link>
 
                 </div>
             </div>
