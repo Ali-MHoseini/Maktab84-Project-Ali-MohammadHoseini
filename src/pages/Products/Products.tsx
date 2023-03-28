@@ -5,13 +5,15 @@ import {Cards} from '../../components/Cards/Cards'
 import {Link,NavLink} from 'react-router-dom'
 import {getCategories, getProds} from "../../middleware/api/api";
 import {useSelector} from "react-redux";
+import {setProdCart} from "../../middleware/redux/slice/CartSlice/CartSlice";
+import {toast} from "react-toastify";
 
 export const Products = ()=> {
     const [data,setData] = useState<any>([])
     const [allCategories,setAllCategories] = useState([])
     const [numOfPages,setNumOfPages] = useState<number>(1)
     const [filter,setFilter] = useState('')
-    const  [reRender,setReRender] = useState(false)
+    const [reRender,setReRender] = useState(false)
     const allData = useSelector((state:any)=> state.Product.AllProducts)
 
     useEffect(() => {
@@ -19,6 +21,7 @@ export const Products = ()=> {
             setAllCategories(res.data.hits)
         })
     }, []);
+
     useEffect(() => {
         const insertId = window.location.search? window.location.search.split('?')[1]
             .split('=')[1].split('_')[0]:'';
@@ -49,9 +52,11 @@ export const Products = ()=> {
                 setData(expensive)
                 break;
             default:
-                alert('Wrong')
+                console.log(null)
         }
     },[filter])
+
+
 
     const changePage = (pageNum:string) => {
         getProds(pageNum,6).then(res=> setData(res.data.hits))
@@ -75,7 +80,7 @@ export const Products = ()=> {
                                 <Link
                                     onClick={()=>setReRender(!reRender)}
                                     style={{textDecoration: 'none'}}
-                                    to={{pathname:`/products`,search:`?sort=${item._id}_cat`,}}>
+                                    to={{pathname:`/products`,search:`?sort=${item._id}_cat`}}>
                                     {item.name}
                                 </Link>
                                 {item.subCategories?<ul>
@@ -113,7 +118,8 @@ export const Products = ()=> {
                                 Title={item.name}
                                 Price={item.price}
                                 key={crypto.randomUUID()}
-                                id={item._id}/>
+                                id={item._id}
+                                Data={item}/>
                         ))
                     }
                 </div>

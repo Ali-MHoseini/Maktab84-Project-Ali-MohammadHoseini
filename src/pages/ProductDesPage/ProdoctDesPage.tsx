@@ -3,9 +3,10 @@ import React, {useEffect, useState} from "react";
 import { getSingleProd} from "../../middleware/api/api";
 import {useDispatch, useSelector} from "react-redux";
 import {setProdStore} from "../../middleware/redux/slice/ProductSlice/ProductSlice";
-import CircularProgress from "@mui/material/CircularProgress";
+import CircularProgress from '@mui/material/CircularProgress'
 import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {setProdCart} from "../../middleware/redux/slice/CartSlice/CartSlice";
 
 const toastData:any = {
     position: "top-center",
@@ -19,8 +20,11 @@ const toastData:any = {
     style: {textTransform: 'capitalize'}
 }
 export const ProductDesPage = () => {
+
+    let x = 0;
     const [prodNum,setProdNum] = useState<number>(1)
     const [isLoading,setIsLoading] = useState<boolean>(false)
+    const [isAdd , setIsAdd] = useState<boolean>(false)
     const [data,setData] = useState({
         name:'#',
         description:'#',
@@ -60,6 +64,16 @@ export const ProductDesPage = () => {
         }
     }
 
+    const addToCart = ():void => {
+        setIsAdd(true)
+        while(x<prodNum) {
+            dispatch(setProdCart(data))
+            x += 1;
+        }
+        setIsAdd(false)
+        toast.success('عملیات با موفیت انجام شد',toastData)
+    }
+
     return(
         <>
             {isLoading?null:<>
@@ -85,7 +99,13 @@ export const ProductDesPage = () => {
                                 </div>
                                 <input value={prodNum} className='plusOrMinInp'/>
                             </div>
-                            <Button variant='contained' color='success'>افزودن به سبد خرید</Button>
+                            <Button
+                                variant='contained'
+                                color='success'
+                                onClick={addToCart}>
+                                {isAdd?<CircularProgress />:`افزودن به سبد خرید`}
+
+                            </Button>
                         </div>
                     </div>
                 </div>
