@@ -132,7 +132,8 @@ export const Homepage = () => {
                                 Image={item.image}
                                 Title={item.name}
                                 Price={item.price}
-                                id={item._id}/>
+                                id={item._id}
+                                Data={item}/>
                         ))
                     }
                     <div className='moreProd__card'>
@@ -158,7 +159,8 @@ export const Homepage = () => {
                                 Image={item.image}
                                 Title={item.name}
                                 Price={item.price}
-                                id={item._id}/>
+                                id={item._id}
+                                Data={item}/>
                         ))
                     }
                     <div className='moreProd__card'>
