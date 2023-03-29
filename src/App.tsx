@@ -11,6 +11,7 @@ import{ToastContainer} from 'react-toastify'
 import {ProductDesPage} from "./pages/ProductDesPage/ProdoctDesPage";
 import {Cart} from "./pages/Cart/Cart";
 import {PaymentCart} from "./pages/Payment/PaymentCart";
+import {PaymentResult} from "./pages/PeymentResult/PaymentResult";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
                   <Route path='/cart' element={<Cart/>} />
                   <Route path='/login' element={<Login />}/>
                   <Route path='/signup' element={<SignUp />}/>
-                  {/*<Route path='/payment_result'/>*/}
+                  <Route path='/payment_result' element={<PaymentResult />}/>
                   <Route path='/products' element={<Products/>} />
                   <Route path='/products/:id' element={<ProductDesPage />} />
                   <Route path='/payment' element={<PaymentCart />}/>

@@ -61,19 +61,15 @@ export const PaymentCart = () => {
           </div>
           {
             payment === '0' ?
-            (<Link to='/seccessPayment-cart'>
-            <button id="PayButton" className="btn btn-block btn-success submit-button" type="submit">
+            (
                 <Button variant="contained" color="warning"
-                    onClick={()=>navigate({pathname:'/payment-result', search:'?faild'})}>پرداخت</Button>
-            </button>
-            </Link>)
+                    onClick={()=>navigate({pathname:'/payment_result', search:'?faild'})}>پرداخت</Button>
+            )
             :
-            (<Link to='/failedPayment-cart'>
-            <button id="PayButton" className="btn btn-block btn-success submit-button" type="submit">
+            (
                 <Button variant="contained" color="info"
-                    onClick={()=>navigate({pathname:'/payment-result', search:'?success'})}>پرداخت</Button>
-            </button>
-            </Link>)
+                    onClick={()=>navigate({pathname:'/payment_result', search:'?success'})}>پرداخت</Button>
+            )
           }
       </form>
   </div>

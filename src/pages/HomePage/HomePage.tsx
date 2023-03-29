@@ -76,6 +76,7 @@ const cardCategoryList:category[] = [
 
 export const Homepage = () => {
     const [bookData,setBookData] = useState([])
+    const [elecData,setElecData] = useState([])
     const dispatch = useDispatch()
     let allData;
     useEffect(() => {
@@ -83,6 +84,7 @@ export const Homepage = () => {
             allData =(res.data.hits)
             dispatch(setProds(res.data.hits))
             setBookData(allData.filter((item:any)=>item.subCategory._id == '6406eef6981b5568a19a1e63').slice(0,4))
+            setElecData(allData.filter((item:any)=>item.subCategory.category == '64060aa7981b5568a19a1b7a').slice(0,4))
         })
     }, []);
 
@@ -153,7 +155,7 @@ export const Homepage = () => {
                 </Link>
                 <div className='category__list'>
                     {
-                        bookData && bookData.map((item:any) =>(
+                        elecData && elecData.map((item:any) =>(
                             <Cards
                                 key={crypto.randomUUID()}
                                 Image={item.image}
