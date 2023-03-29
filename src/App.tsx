@@ -9,26 +9,25 @@ import {Login} from "./pages/Login/Login"
 import {Footer} from "./layouts/Footer/Footer";
 import{ToastContainer} from 'react-toastify'
 import {ProductDesPage} from "./pages/ProductDesPage/ProdoctDesPage";
+import {Cart} from "./pages/Cart/Cart";
+import {PaymentCart} from "./pages/Payment/PaymentCart";
+import {PaymentResult} from "./pages/PeymentResult/PaymentResult";
 
 
 function App() {
-
   return (
       <>
               <Header />
               <ToastContainer />
               <Routes>
                   <Route path='/' element={<Homepage />}/>
-              {/*    <Route path='/cart'/>*/}
+                  <Route path='/cart' element={<Cart/>} />
                   <Route path='/login' element={<Login />}/>
                   <Route path='/signup' element={<SignUp />}/>
-              {/*    <Route path='/payment_result'/>*/}
-                  <Route path='/products' element={<Products/>}>
-                      {/*<Route path='/:category' element={<Products/>}>*/}
-                      {/*    <Route path='/:id' element={<ProductDesPage />} />*/}
-                      {/*</Route>*/}
-                  </Route>
-              {/*    <Route path='/purchase'/>*/}
+                  <Route path='/payment_result' element={<PaymentResult />}/>
+                  <Route path='/products' element={<Products/>} />
+                  <Route path='/products/:id' element={<ProductDesPage />} />
+                  <Route path='/payment' element={<PaymentCart />}/>
                   <Route path='/dashboard' element={<Dashboard />} />
               {/*    <Route path='*'/>*/}
               </Routes>

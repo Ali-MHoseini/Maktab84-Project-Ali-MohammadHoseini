@@ -37,6 +37,7 @@ export const Login = () => {
         email:"",
         password:"",
     })
+    const isOrder = useSelector((state:any) => state.Cart.IsOrdering)
     const handleLogin = async  (data:LoginDT) => {
         setIsLoading(true)
         try {
@@ -47,7 +48,13 @@ export const Login = () => {
             dispatch(setUserLoggedIn(true))
             setIsLoading(false)
             if(decodedUserInfo.bAdmin === true) navigator('/dashboard')
-            else navigator('/')
+            else{
+                if(isOrder){
+                    navigator('/cart')
+                }else{
+                    navigator('/')
+                }
+            }
             toast.success("خوش آمدید",toastData)
         }catch (err:any) {
             toast.error(err.response.data.message,toastData)

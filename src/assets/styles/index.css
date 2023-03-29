@@ -1,3 +1,9 @@
+* {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+
+}
 .header {
     padding-top:1rem;
     display:flex;
@@ -76,7 +82,7 @@
 }
 
 .prod__card{
-    width:13.68rem;
+    width:17.5rem;
     height:18.43rem;
     background-color:#d9d9d9;
     display: flex;
@@ -84,13 +90,14 @@
     align-items: center;
     justify-content:center;
     padding:0.75rem;
+    gap:1rem;
 }
 
 .prod__card:hover{
     box-shadow: 0 0 2px 5px #d3d3d3;
 }
 .moreProd__card {
-    width:13.68rem;
+    width:16.5rem;
     height:18.43rem;
     background-color: #e8e8e8;
     display: flex;
@@ -98,6 +105,7 @@
     align-items: center;
     justify-content:center;
     padding:0.75rem;
+    gap:1rem;
 }
 
 .footer {
@@ -127,10 +135,6 @@
     padding:0.5rem;
 }
 
-.links {
-    text-decoration: none;
-    color:black;
-}
 .links:hover {
     color:red;
     padding-right:1rem;
@@ -139,12 +143,14 @@
     width: 100%;
     height: 55rem;
     display: flex;
+
 }
 .categoryBox {
     width: 20%;
     height: 100%;
     display:flex;
     flex-direction: column;
+    padding-left: 1rem;
 }
 .prodBox{
     width: 80%;
@@ -226,7 +232,7 @@
 }
 .btn_header {
     display: flex;
-    gap:0.25rem;
+    gap:1rem;
 }
 .dashboard {
     width: 70%;
@@ -322,4 +328,194 @@ td{
 
 .inpModalAdd input{
     width: 100%;
+}
+
+.proDesPage{
+    width:90vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    height: 35rem;
+}
+
+.desProduct{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.plusOrMinBTN{
+    width:1.5rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    cursor: pointer;
+}
+.plusOrMinInp {
+    width:1.5rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    outline: none;
+}
+
+.plusOrMinBTN:hover{
+    background-color: #d9d9d9;
+
+}
+
+.description {
+    margin:5rem;
+}
+
+.description h2{
+    padding:0.25rem;
+    border-bottom:1px solid #d9d9d9;
+}
+.description p{
+    padding:0.25rem;
+    font-weight:lighter;
+}
+.categoryBox{
+    padding:1rem;
+}
+
+.links {
+    text-decoration: none;
+}
+
+.cart {
+    width:100%;
+    padding-top: 3rem;
+    padding-bottom:3rem;
+    display:flex;
+    flex-direction:column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.cart h1{
+    text-align: center;
+    padding: 1rem ;
+    background-color:#d9d9d9;
+    width: 95%;
+    border-radius:2rem ;
+}
+
+.cartBox {
+    width:95%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content:space-around ;
+    align-items:center;
+    gap:1rem;
+}
+.gridItems{
+    position: relative;
+    padding: 0.5rem;
+    height:5.5rem;
+    background-color: #e8e8e8;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    display: flex;
+    gap:1rem;
+    align-items:center;
+
+}
+.gridItems:hover {
+    border-left: 0.25rem solid red;
+}
+
+.cartImg {
+    width: 70px;
+    height: 70px;
+    border-radius:0.5rem;
+}
+.itemsNumberChanges {
+    position: absolute;
+    left: 20px;
+    height:3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: end;
+    gap:0.15rem;
+}
+
+.arrows:hover {
+    cursor: pointer;
+    color:red;
+}
+.totalPrice{
+    padding: 1rem ;
+    background-color:#d9d9d9;
+    width: 95%;
+    border-radius:2rem ;
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    justify-content: center;
+}
+
+.cartSec{
+    width: 33rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.submitForm {
+    width:100%;
+    padding-top: 3rem;
+    padding-bottom:3rem;
+    display:flex;
+    flex-direction:column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.submitForm h2{
+    text-align: center;
+    padding: 1rem ;
+    background-color:#d9d9d9;
+    width: 95%;
+    border-radius:2rem ;
+}
+.cartBox {
+    width:95%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-content:center;
+    gap:1rem;
+    padding-right: 5rem;
+}
+
+.textField {
+    width:85%;
+}
+
+.submitButton {
+    width:10rem;
+    justify-self: center;
+}
+.submitFormErr {
+    width:80%;
+    border-radius:2rem;
+    padding-top: 3rem;
+    padding-bottom:3rem;
+    display:flex;
+    flex-direction:column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+}
+
+.payment-result{
+    width: 95%;
+    height:50vh ;
+    padding-top:2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

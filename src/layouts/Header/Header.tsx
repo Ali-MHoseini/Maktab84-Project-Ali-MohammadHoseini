@@ -13,6 +13,7 @@ import {setUserLoggedIn} from "../../middleware/redux/slice/UserInfoSlice/UserIn
 export const Header = ()=> {
     const loggedIn = useSelector((state:any) => state.userInfo.userLogged);
     const adminUser = useSelector((state:any) => state.userInfo.userInfo.bAdmin)
+    const cart = useSelector((state:any) => state.Cart.Cart)
     const dispatch = useDispatch();
     const navigator = useNavigate();
     return(
@@ -39,21 +40,36 @@ export const Header = ()=> {
             <div className='icons'>
                 <div>
                     {
-                        loggedIn===false?<Link to='/login'>
-                    <PersonIcon fontSize="large" color='action'/>
-                </Link>:(adminUser===true?<div className='btn_header'>
+                        loggedIn===false?<div className='btn_header'>
+                            <Link to='/login'>
+                                <PersonIcon fontSize="large" color='action'/>
+                            </Link>
+                            <Link to={'/cart'} style={{alignSelf:'flex-start'}}>
+                                <Badge badgeContent={cart.length} color="primary">
+                                    <ShoppingCartIcon fontSize="large" color='action'/>
+                                </Badge>
+                            </Link>
+                        </div>:(adminUser===true?<div className='btn_header'>
                             <Button variant="contained" color='success' onClick={()=>navigator('/dashboard')}>ورود به پنل</Button>
                             <Button variant="contained" color='error' onClick={()=>dispatch(setUserLoggedIn(false))}>خروج</Button>
-                        </div>:<Button variant="contained" color='error' onClick={()=>dispatch(setUserLoggedIn(false))}>خروج</Button>)
+                        </div>:<div className='btn_header'>
+                            <Button
+                                variant="contained"
+                                color='error'
+                                onClick={()=>dispatch(setUserLoggedIn(false))}>
+                                خروج
+                            </Button>
+                            <Link to={'/cart'} style={{alignSelf:'flex-start'}}>
+                                <Badge badgeContent={cart.length} color="primary">
+                                    <ShoppingCartIcon fontSize="large" color='action'/>
+                                </Badge>
+                            </Link>
+                        </div>)
                     }
 
                 </div>
 
-                <Link to={'/cart'} style={{alignSelf:'flex-start'}}>
-                    <Badge badgeContent='0' color="primary">
-                        <ShoppingCartIcon fontSize="large" color='action'/>
-                    </Badge>
-                </Link>
+
             </div>
 
         </div>

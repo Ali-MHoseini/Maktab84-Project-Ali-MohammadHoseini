@@ -5,7 +5,12 @@ const UserInfoSlice = createSlice({
     initialState :{
         userInfo : [],
         userToken : '',
-        userLogged: false
+        userLogged: false,
+        userOrder:{
+            Order:[],
+            Info:[],
+            Total:0
+        }
 
     },
     reducers: {
@@ -18,8 +23,19 @@ const UserInfoSlice = createSlice({
         setUserInfo : (state,{payload}) => {
             state.userInfo = payload
         },
+        setOrderCart : (state,{payload}) => {
+            state.userOrder.Order = payload
+        },
+        setOrderInfo : (state,{payload}) => {
+            state.userOrder.Info = payload
+        },
+        setOrderTotal : (state,{payload}) => {
+            state.userOrder.Total = payload
+        },
+
+
     }
 })
 
-export const {setUserToken,setUserInfo,setUserLoggedIn} = UserInfoSlice.actions
+export const {setUserToken,setUserInfo,setUserLoggedIn,setOrderCart,setOrderInfo,setOrderTotal} = UserInfoSlice.actions
 export default UserInfoSlice.reducer
