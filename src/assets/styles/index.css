@@ -82,7 +82,7 @@
 }
 
 .prod__card{
-    width:14.2rem;
+    width:17.5rem;
     height:18.43rem;
     background-color:#d9d9d9;
     display: flex;
@@ -97,7 +97,7 @@
     box-shadow: 0 0 2px 5px #d3d3d3;
 }
 .moreProd__card {
-    width:14.2rem;
+    width:16.5rem;
     height:18.43rem;
     background-color: #e8e8e8;
     display: flex;
@@ -143,12 +143,14 @@
     width: 100%;
     height: 55rem;
     display: flex;
+
 }
 .categoryBox {
     width: 20%;
     height: 100%;
     display:flex;
     flex-direction: column;
+    padding-left: 1rem;
 }
 .prodBox{
     width: 80%;
@@ -230,7 +232,7 @@
 }
 .btn_header {
     display: flex;
-    gap:0.25rem;
+    gap:1rem;
 }
 .dashboard {
     width: 70%;
@@ -506,4 +508,14 @@ td{
     align-items: center;
     justify-content: center;
     background-color: #d9d9d9;
+}
+
+.payment-result{
+    width: 95%;
+    height:50vh ;
+    padding-top:2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

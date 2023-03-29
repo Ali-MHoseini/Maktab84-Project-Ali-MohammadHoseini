@@ -56,7 +56,6 @@ export const ProdRow = ({name,subCat,id,description,price,quantity,getData}:Row)
                         quantity={quantity}
                         name={name}
                     />
-                    <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}} onClick={()=>setShowEditModal(true)}>ویرایش</p>
                     <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}}
                        onClick={()=>setShowEditModal(true)}>ویرایش</p>
                     <p style={{color:'blue',textDecoration:'underline',cursor:'pointer'}}

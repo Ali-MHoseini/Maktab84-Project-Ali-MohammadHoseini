@@ -53,7 +53,6 @@ export const Header = ()=> {
                             <Button variant="contained" color='success' onClick={()=>navigator('/dashboard')}>ورود به پنل</Button>
                             <Button variant="contained" color='error' onClick={()=>dispatch(setUserLoggedIn(false))}>خروج</Button>
                         </div>:<div className='btn_header'>
-
                             <Button
                                 variant="contained"
                                 color='error'

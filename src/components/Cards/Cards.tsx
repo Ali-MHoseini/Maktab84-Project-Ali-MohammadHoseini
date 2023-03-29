@@ -43,7 +43,7 @@ export const Cards = ({Image,Title,Price,id,Data}:Card)=> {
         <div className='prod__card'>
             <img
                 src={`https://shop-api.iran.liara.run${Image}`}
-                width='190px' height='190px'
+                width='180px' height='180px'
                 alt='#'
                 crossOrigin='anonymous'/>
             <Link style={{textDecoration:"none"}} to={`/products/p=${id}`}>
@@ -55,8 +55,9 @@ export const Cards = ({Image,Title,Price,id,Data}:Card)=> {
                     variant="contained"
                     color="success"
                     size="small"
+
                     onClick={addToCart}>
-                    {isAdd?<CircularProgress />:`افزودن به سبد خرید`}
+                    {isAdd?<CircularProgress />:`افزودن به سبد`}
                 </Button>
             </div>
         </div>

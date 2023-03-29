@@ -44,9 +44,14 @@ const CartSlice = createSlice({
         },
         setIsOrdering:(state:Draft<any>,{payload}) :void => {
             state.IsOrdering = payload
+        },
+        removeItems:(state:Draft<any>) :void => {
+            state.Cart = []
+            state.Total = 0
+            state.isOrdering = false
         }
     }
 })
 
-export const {setProdCart,decProdCart,delProdCart,setIsOrdering} = CartSlice.actions
+export const {setProdCart,decProdCart,delProdCart,setIsOrdering,removeItems} = CartSlice.actions
 export default CartSlice.reducer
