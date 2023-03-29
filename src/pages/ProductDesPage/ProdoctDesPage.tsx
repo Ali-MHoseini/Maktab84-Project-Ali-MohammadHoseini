@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import React, {useEffect, useState} from "react";
 import { getSingleProd} from "../../middleware/api/api";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setProdStore} from "../../middleware/redux/slice/ProductSlice/ProductSlice";
 import CircularProgress from '@mui/material/CircularProgress'
 import {toast} from "react-toastify";

@@ -4,7 +4,7 @@ import '../../assets/styles/index.css'
 import {setProdCart} from "../../middleware/redux/slice/CartSlice/CartSlice";
 import {toast} from "react-toastify";
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 
 interface Card {
@@ -12,7 +12,7 @@ interface Card {
     Title:string,
     Price:string,
     id:string,
-    Data:object
+    Data:any
 }
 
 const toastData:any = {

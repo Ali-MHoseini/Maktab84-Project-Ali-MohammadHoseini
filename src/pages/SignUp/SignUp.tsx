@@ -7,13 +7,14 @@ import {loginUser, signUpUser} from "../../middleware/api/api";
 import 'react-toastify/dist/ReactToastify.css';
 import JwtDecode from "jwt-decode";
 import {setUserInfo, setUserLoggedIn, setUserToken} from "../../middleware/redux/slice/UserInfoSlice/UserInfoSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 
 
 type SighupDT = {
     email: string,
-    name:string,
+    firstName:string,
+    lastName:string,
     password: string
 }
 export const SignUp = () => {
@@ -22,9 +23,11 @@ export const SignUp = () => {
     const navigator = useNavigate()
     const [signupData,setSignupData] = useState<SighupDT>({
         email:"",
-        name:"",
+        firstName:"",
+        lastName:"",
         password:"",
     })
+    const isOrder = useSelector((state:any) => state.Cart.IsOrdering)
     const handleSignUp = async  (data:SighupDT) => {
         setIsLoading(true)
         try {
@@ -34,10 +37,14 @@ export const SignUp = () => {
             dispatch(setUserInfo(decodedUserInfo))
             dispatch(setUserLoggedIn(true))
             setIsLoading(false)
-            navigator('/')
+            if(isOrder){
+                navigator('/cart')
+            }else{
+                navigator('/')
+            }
             toast("خوش آمدید")
         }catch (err:any) {
-            toast(err.message)
+            toast(err.response.data.message)
         }
 
     }
@@ -55,12 +62,21 @@ export const SignUp = () => {
                         required/>
                 </label>
                 <label className='inputField'>
-                    نام کاربری:
+                    نام:
                     <TextField
                         type="text"
-                        label="نام کاربری"
+                        label="نام"
                         variant="outlined"
-                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,name: (e.target as HTMLInputElement).value})}
+                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,firstName: (e.target as HTMLInputElement).value})}
+                        required/>
+                </label>
+                <label className='inputField'>
+                    نام خانوادگی:
+                    <TextField
+                        type="text"
+                        label=" نام خانوادگی"
+                        variant="outlined"
+                        onChange={(e:React.ChangeEvent)=>setSignupData({...signupData,lastName: (e.target as HTMLInputElement).value})}
                         required/>
                 </label>
                 <label className='inputField'>

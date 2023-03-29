@@ -5,8 +5,7 @@ import {Cards} from '../../components/Cards/Cards'
 import {Link,NavLink} from 'react-router-dom'
 import {getCategories, getProds} from "../../middleware/api/api";
 import {useSelector} from "react-redux";
-import {setProdCart} from "../../middleware/redux/slice/CartSlice/CartSlice";
-import {toast} from "react-toastify";
+import '../../assets/styles/index.css'
 
 export const Products = ()=> {
     const [data,setData] = useState<any>([])
@@ -70,7 +69,7 @@ export const Products = ()=> {
                         <Link
                             onClick={()=>setReRender(!reRender)}
                             to={{pathname:'/products'}}
-                            style={{textDecoration: 'none'}}>
+                            className='links'>
                             همه محصولات
                         </Link>
                     </li>
@@ -79,7 +78,7 @@ export const Products = ()=> {
                             <li key={crypto.randomUUID()}>
                                 <Link
                                     onClick={()=>setReRender(!reRender)}
-                                    style={{textDecoration: 'none'}}
+                                    className='links'
                                     to={{pathname:`/products`,search:`?sort=${item._id}_cat`}}>
                                     {item.name}
                                 </Link>
@@ -89,7 +88,7 @@ export const Products = ()=> {
                                             <li key={crypto.randomUUID()}>
                                                 <NavLink
                                                     onClick={()=>setReRender(!reRender)}
-                                                    style={{textDecoration: 'none'}}
+                                                    className='links'
                                                     to={{pathname:`/products`,search:`?sort=${item._id}_sub`}}>
                                                     {item.name}
                                                 </NavLink>
